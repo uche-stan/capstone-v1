@@ -16,9 +16,14 @@ class UserView(generics.ListCreateAPIView):
     
 class MenuView(generics.ListCreateAPIView):
     queryset = Menu.objects.all()
-    serializer_class = MenuSerializer   
+    serializer_class = MenuSerializer 
+    permission_classes = [IsAuthenticated] 
 
-
+class SingleMenuItemView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Menu.objects.all()
+    serializer_class = MenuSerializer 
+    permission_classes = [IsAuthenticated]
+    
 class BookingViewSet(generics.ListCreateAPIView):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
@@ -26,9 +31,3 @@ class BookingViewSet(generics.ListCreateAPIView):
     
     
 
-@api_view(['GET', 'POST'])  
-def new_user(request):
-    
-    username = request.GET.get('username')
-    password = request.GET.get('password')
-    
