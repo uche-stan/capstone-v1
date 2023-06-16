@@ -9,6 +9,9 @@ from rest_framework.decorators import api_view
 # Create your views here.
 
 
+def index(request):
+    return render(request, 'index.html', {})
+
 class UserView(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
